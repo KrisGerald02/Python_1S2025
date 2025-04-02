@@ -1,3 +1,8 @@
+def solicitar_lista():
+    """Solicita al usuario que ingrese una lista de cadenas separadas por comas."""
+    entrada = input("Ingrese las cadenas separadas por comas: ")
+    return [cadena.strip() for cadena in entrada.split(",")]
+
 def concatenar_cadenas(lista):
     return " ".join(lista)
 
@@ -8,7 +13,15 @@ def convertir_cadenas(lista):
     return [cadena.upper() if len(cadena) % 2 == 0 else cadena.lower() for cadena in lista]
 
 def buscar_subcadena(lista, subcadena):
-    return [subcadena in cadena for cadena in lista]
+    """Busca una subcadena en cada elemento de la lista e indica la posición donde se encuentra."""
+    resultados = [(i, cadena) for i, cadena in enumerate(lista) if subcadena in cadena]
+    
+    if resultados:
+        return "\n".join([f"Posición {i}: '{cadena}'" for i, cadena in resultados])
+    else:
+        return f"La subcadena '{subcadena}' no se encontró en ninguna cadena."
+
+
 
 def reemplazar_caracter(lista, viejo, nuevo):
     return [cadena.replace(viejo, nuevo) for cadena in lista]
@@ -29,66 +42,60 @@ def contar_caracter(lista, caracter):
     return [cadena.count(caracter) for cadena in lista]
 
 def menu():
-    print("\nMenu de opciones:")
+    print("\nMenú de opciones:")
     print("1. Concatenar cadenas")
     print("2. Calcular longitud de cadenas")
-    print("3. Convertir cadenas segun longitud")
+    print("3. Convertir cadenas según longitud")
     print("4. Buscar subcadena en cadenas")
     print("5. Reemplazar caracteres en cadenas")
     print("6. Eliminar espacios en cadenas")
     print("7. Dividir cadenas por delimitador")
-    print("8. Ordenar cadenas alfabeticamente")
-    print("9. Eliminar cadenas vacias")
+    print("8. Ordenar cadenas alfabéticamente")
+    print("9. Eliminar cadenas vacías")
     print("10. Contar caracteres en cadenas")
     print("0. Salir")
-    return input("Seleccione una opcion: ")
+    opcion = input("Seleccione una opción: ")
+    return opcion
 
-def ejecutar_opcion(opcion, lista):
-    if opcion == "1":
-        print("Ejercicio 1: Concatenar todas las cadenas en una sola cadena, separadas por un espacio.")
-        print(concatenar_cadenas(lista))
-    elif opcion == "2":
-        print("Ejercicio 2: Calcular la longitud de cada cadena y almacenarla en una nueva lista.")
-        print(longitud_cadenas(lista))
-    elif opcion == "3":
-        print("Ejercicio 3: Convertir cadenas a mayusculas si son de longitud par, minusculas si son impares.")
-        print(convertir_cadenas(lista))
-    elif opcion == "4":
-        print("Ejercicio 4: Buscar si una subcadena esta presente en cada cadena de la lista.")
-        subcadena = input("Ingrese la subcadena a buscar: ")
-        print(buscar_subcadena(lista, subcadena))
-    elif opcion == "5":
-        print("Ejercicio 5: Reemplazar un caracter especifico con otro en cada cadena.")
-        viejo = input("Ingrese el caracter a reemplazar: ")
-        nuevo = input("Ingrese el nuevo caracter: ")
-        print(reemplazar_caracter(lista, viejo, nuevo))
-    elif opcion == "6":
-        print("Ejercicio 6: Eliminar espacios en blanco al inicio y final de cada cadena.")
-        print(eliminar_espacios(lista))
-    elif opcion == "7":
-        print("Ejercicio 7: Dividir cada cadena en subcadenas utilizando un delimitador especifico.")
-        delimitador = input("Ingrese el delimitador: ")
-        print(dividir_cadenas(lista, delimitador))
-    elif opcion == "8":
-        print("Ejercicio 8: Ordenar la lista alfabeticamente en orden ascendente.")
-        print(ordenar_cadenas(lista))
-    elif opcion == "9":
-        print("Ejercicio 9: Eliminar cadenas vacias de la lista.")
-        print(eliminar_vacias(lista))
-    elif opcion == "10":
-        print("Ejercicio 10: Contar cuantas veces aparece un caracter especifico en cada cadena.")
-        caracter = input("Ingrese el caracter a contar: ")
-        print(contar_caracter(lista, caracter))
-    elif opcion == "0":
+def ejecutar_opcion(opcion):
+    if opcion == "0":
         print("Saliendo...")
         return False
+
+    lista = solicitar_lista()  # Se solicita la lista de cadenas
+
+    if opcion == "1":
+        print("Cadenas concatenadas:", concatenar_cadenas(lista))
+    elif opcion == "2":
+        print("Longitud de cada cadena:", longitud_cadenas(lista))
+    elif opcion == "3":
+        print("Cadenas convertidas según longitud:", convertir_cadenas(lista))
+    elif opcion == "4":
+        subcadena = input("Ingrese la subcadena a buscar: ")
+        print("Subcadena encontrada en cada cadena:", buscar_subcadena(lista, subcadena))
+    elif opcion == "5":
+        viejo = input("Ingrese el carácter a reemplazar: ")
+        nuevo = input("Ingrese el nuevo carácter: ")
+        print("Cadenas modificadas:", reemplazar_caracter(lista, viejo, nuevo))
+    elif opcion == "6":
+        print("Cadenas sin espacios:", eliminar_espacios(lista))
+    elif opcion == "7":
+        delimitador = input("Ingrese el delimitador: ")
+        print("Cadenas divididas:", dividir_cadenas(lista, delimitador))
+    elif opcion == "8":
+        print("Cadenas ordenadas:", ordenar_cadenas(lista))
+    elif opcion == "9":
+        print("Cadenas sin vacías:", eliminar_vacias(lista))
+    elif opcion == "10":
+        caracter = input("Ingrese el carácter a contar: ")
+        print("Cantidad de veces que aparece el carácter:", contar_caracter(lista, caracter))
     else:
-        print("Opcion no valida.")
+        print(" Opcion no valida. Intente de nuevo.")
+    
     return True
 
 if __name__ == "__main__":
-    lista_ejemplo = ["Hola", "Mundo", "Python", "", "Estructuras de datos"]
     while True:
         opcion = menu()
-        if not ejecutar_opcion(opcion, lista_ejemplo):
+        if not ejecutar_opcion(opcion):
             break
