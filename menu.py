@@ -1,3 +1,8 @@
+#Create Enviroment
+#Ctrl + Shift + P
+#Python: Create Enviroment
+#.venv
+#Select 3.13.2 version
 def solicitar_lista():
     """Solicita al usuario que ingrese una lista de cadenas separadas por comas."""
     entrada = input("Ingrese las cadenas separadas por comas: ")
