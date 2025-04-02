@@ -1,3 +1,33 @@
+def concatenar_cadenas(lista):
+    return " ".join(lista)
+
+def longitud_cadenas(lista):
+    return [len(cadena) for cadena in lista]
+
+def convertir_cadenas(lista):
+    return [cadena.upper() if len(cadena) % 2 == 0 else cadena.lower() for cadena in lista]
+
+def buscar_subcadena(lista, subcadena):
+    return [subcadena in cadena for cadena in lista]
+
+def reemplazar_caracter(lista, viejo, nuevo):
+    return [cadena.replace(viejo, nuevo) for cadena in lista]
+
+def eliminar_espacios(lista):
+    return [cadena.strip() for cadena in lista]
+
+def dividir_cadenas(lista, delimitador):
+    return [cadena.split(delimitador) for cadena in lista]
+
+def ordenar_cadenas(lista):
+    return sorted(lista)
+
+def eliminar_vacias(lista):
+    return [cadena for cadena in lista if cadena]
+
+def contar_caracter(lista, caracter):
+    return [cadena.count(caracter) for cadena in lista]
+
 def menu():
     print("\nMenu de opciones:")
     print("1. Concatenar cadenas")
@@ -62,33 +92,3 @@ if __name__ == "__main__":
         opcion = menu()
         if not ejecutar_opcion(opcion, lista_ejemplo):
             break
-
-def concatenar_cadenas(lista):
-    return " ".join(lista)
-
-def longitud_cadenas(lista):
-    return [len(cadena) for cadena in lista]
-
-def convertir_cadenas(lista):
-    return [cadena.upper() if len(cadena) % 2 == 0 else cadena.lower() for cadena in lista]
-
-def buscar_subcadena(lista, subcadena):
-    return [subcadena in cadena for cadena in lista]
-
-def reemplazar_caracter(lista, viejo, nuevo):
-    return [cadena.replace(viejo, nuevo) for cadena in lista]
-
-def eliminar_espacios(lista):
-    return [cadena.strip() for cadena in lista]
-
-def dividir_cadenas(lista, delimitador):
-    return [cadena.split(delimitador) for cadena in lista]
-
-def ordenar_cadenas(lista):
-    return sorted(lista)
-
-def eliminar_vacias(lista):
-    return [cadena for cadena in lista if cadena]
-
-def contar_caracter(lista, caracter):
-    return [cadena.count(caracter) for cadena in lista]
